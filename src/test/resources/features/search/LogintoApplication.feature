@@ -8,9 +8,6 @@ Feature: Login To ZTNA_ExtremeCloud
     And user enter admin123 as password
     Then  user should be able to Login
 
-
-  @ExtremeCloudPage
-  Scenario:
     Given user is on ExtremeCloud Universal ZTNA page
     When user click on IAM button
     When user click on UserGroup button

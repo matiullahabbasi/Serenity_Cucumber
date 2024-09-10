@@ -19,9 +19,9 @@ public class ZTNADashboardPage extends PageObject {
    public  void loginVerified()
    {
         System.out.println(getDriver().getTitle());
-       //getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+
        //wait condition for page loading.
-    loadingIndicator =   By.xpath("//*[@id=\"en-ztna-NavCollapseItem-IAM\"]");
+        loadingIndicator =   By.xpath("//*[@id=\"en-ztna-NavCollapseItem-IAM\"]");
        waitingTime();
 
    }
@@ -55,6 +55,10 @@ public class ZTNADashboardPage extends PageObject {
 
    public void clickOnCreateGroup()
    {
+
+       loadingIndicator=By.xpath("//*[@id=\"en-ztna-UserGroups-createUserGroupButton\"]");
+       waitingTime();
+
        WebElement shadowhost = getDriver().findElement(By.xpath("//*[@id=\"en-ztna-UserGroups-createUserGroupButton\"]"));
        System.out.println(shadowhost);
        SearchContext shadowRoot=shadowhost.getShadowRoot();
@@ -72,7 +76,7 @@ public class ZTNADashboardPage extends PageObject {
        WebElement shadowContent=shadowRoot.findElement(By.cssSelector("div > div > input "));
 //       WebElement shad=shadowRoot.findElement(By.class(" ./en-c-text-field__input "));
        System.out.println(shadowContent);
-       shadowContent.sendKeys("Matiullah");
+       shadowContent.sendKeys("Pakistan is our HomeLand");
 
    }
 
@@ -87,7 +91,8 @@ public class ZTNADashboardPage extends PageObject {
 
    private void waitingTime()
    {
-       FluentWait wait = new FluentWait(getDriver()).withTimeout(Duration.ofSeconds(30)).pollingEvery(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+       System.out.println(loadingIndicator);
+       FluentWait wait = new FluentWait(getDriver()).withTimeout(Duration.ofSeconds(3000)).pollingEvery(Duration.ofSeconds(1000)).ignoring(NoSuchElementException.class);
        wait.until(ExpectedConditions.visibilityOf(getDriver().findElement(loadingIndicator)));
        System.out.println("Wait is over");
    }
